@@ -1,4 +1,5 @@
-# AWAM — Indonesian Legal RAG with Query Reformulation
+# AWAM — Accessible Wisdom for Law & Advocacy Matters
+## Indonesian Legal RAG with Query Reformulation
 
 A retrieval-augmented generation system for answering Indonesian legal questions in everyday language. Users ask in casual Bahasa Indonesia; the system reformulates the query into formal legal terminology, retrieves relevant regulations from a vector database, and generates a grounded answer citing specific laws and articles.
 
