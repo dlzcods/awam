@@ -1,0 +1,13 @@
+{
+  "framework": "vite",
+  "paths": {
+    "workdir": "./src/",
+    "components": "./src/components/selia",
+    "css": "./src/index.css",
+    "utils": "./src/lib/utils.ts"
+  },
+  "imports": {
+    "utils": "@/lib/utils.ts",
+    "components": "@/components/selia"
+  }
+}
