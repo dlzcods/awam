@@ -1,6 +1,23 @@
+# Environment
+.env
+
+# Python
 venv/
 __pycache__/
 *.pyc
-.env
+
+# Node
+apps/web/node_modules/
+apps/web/dist/
+
+# Data
 faiss_index/
+
+# OS
 .DS_Store
+
+# Tools
+.code-review-graph/
+.claude/
+.kiro/
+.vscode/
