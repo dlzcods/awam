@@ -12,6 +12,7 @@ rag_image = (
         "langchain-google-genai",
         "faiss-cpu",
         "sentence-transformers",
+        "model2vec",
         "fastapi",
         "pydantic",
         "python-dotenv"
@@ -45,7 +46,7 @@ class QueryResponse(BaseModel):
         modal.Secret.from_name("my-groq-secret")
     ], 
     volumes={"/data": vol},
-    keep_warm=1
+    min_containers=1
 )
 class Model:
     def __init__(self):
@@ -82,15 +83,18 @@ class Model:
     def process_query(self, query: str):
         return self.get_engine().process_query(query)
 
-    @modal.web_endpoint(method="POST", label="query")
+    @modal.fastapi_endpoint(method="POST", label="query")
     def web_query(self, request: QueryRequest):
         try:
             result = self.process_query.local(request.query)
             return result
         except Exception as e:
+            import traceback
+            error_detail = f"{type(e).__name__}: {str(e)}\n{traceback.format_exc()}"
+            print(f"ERROR: {error_detail}")
             from fastapi import HTTPException
-            raise HTTPException(status_code=500, detail=str(e))
+            raise HTTPException(status_code=500, detail=error_detail)
 
-    @modal.web_endpoint(method="POST", label="reindex")
+    @modal.fastapi_endpoint(method="POST", label="reindex")
     def admin_reindex(self, item: dict):
         return {"message": "Re-indexing logic needs data source connection"}

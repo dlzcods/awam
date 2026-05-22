@@ -51,13 +51,10 @@ def build_index():
     splits = text_splitter.split_documents(raw_docs)
     
     print("Initializing Embeddings...")
-    if not config.GOOGLE_API_KEY:
-        raise ValueError("GOOGLE_API_KEY not found in environment variables.")
-
-    embeddings = GoogleGenerativeAIEmbeddings(
-        model=config.EMBEDDING_MODEL,
-        google_api_key=config.GOOGLE_API_KEY
-    )
+    
+    # Use model2vec static embeddings (very fast)
+    from .embeddings import Model2VecEmbeddings
+    embeddings = Model2VecEmbeddings(config.EMBEDDING_MODEL)
     
     print("Creating FAISS index...")
     vectorstore = FAISS.from_documents(splits, embeddings)
