@@ -100,7 +100,6 @@ The frontend posts user queries directly to the API endpoint. The API handles th
 Copy `.env.example` to `.env` and fill in:
 
 ```
-GOOGLE_API_KEY=...          # Required for embeddings
 GROQ_API_KEY=...            # Required if using Groq/Qwen
 LLM_PROVIDER=groq           # "groq" or "gemini"
 GROQ_MODEL=qwen/qwen3-32b

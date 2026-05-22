@@ -3,15 +3,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-if not GOOGLE_API_KEY:
-    pass 
-
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq").lower() # Options: "gemini", "groq"
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "groq").lower()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL = os.getenv("GROQ_MODEL")
 HF_TOKEN = os.getenv("HF_TOKEN")
