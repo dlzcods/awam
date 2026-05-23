@@ -1,0 +1,6 @@
+firecrawl-py==4.8.0
+beautifulsoup4==4.14.2
+selenium==4.38.0
+webdriver-manager==4.0.2
+python-dotenv==1.2.1
+requests==2.32.5

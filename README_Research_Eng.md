@@ -148,6 +148,158 @@ Below are the 15 "Layman Terms" questions tested, including the Query Transforma
 ### 3.2 Generation Quality Assessment (LLM-as-a-Judge)
 In addition to automated system evaluation, we performed an **LLM-as-a-Judge Simulation** on 15 samples using **Faithfulness** and **Answer Relevancy** criteria.
 
+## 📊 Detail Evaluation Per Sample
+
+### 1. Fuel Trading Business License
+> **Pertanyaan:** "Gimana sih caranya ngurus izin kalau mau buka usaha jual beli BBM? Ribet nggak ya?"
+>
+> *(English: "How do I get a permit if I want to open a fuel trading business? Is it complicated?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer accurately cites GR No. 28/2025 and GR No. 36/2004 from the context. No hallucinated additional info.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer directly responds to the "is it complicated" complaint with an explanation of OSS and risk classification. Very solution-oriented.
+
+### 2. Protection of Prisoners who are Victims of Bullying
+> **Pertanyaan:** "Kalau ada napi yang dibully... ada hukum yang ngelindungin mereka nggak sih?"
+>
+> *(English: "If a prisoner is bullied... is there any law that protects them?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer precisely cites Law No. 22 of 2022 Article 3 letters b and c from the available context.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Directly answers "Yes, there are protection rights", matching the user's intent seeking certainty.
+
+### 3. Legal Protection vs Law Enforcement
+> **Pertanyaan:** "Sebenernya apa sih bedanya perlindungan hukum sama penegakan hukum?"
+>
+> *(English: "What is actually the difference between legal protection and law enforcement?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Definitions are taken exactly from expert opinions (Philipus M. Hadjon, Jimly Asshiddiqie) found in the document. The preventive/repressive difference is explained well.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer structure using a comparison table is very helpful in answering user confusion.
+
+### 4. Violation of Exclusive Distribution Rights
+> **Pertanyaan:** "Misal aku punya hak tunggal... ada orang lain ikut jualan tanpa izin, bisa dilaporin pakai hukum apa?"
+>
+> *(English: "Suppose I have sole rights... someone else sells without permission, what law can I use to report them?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐ (4/5)
+  - *Analysis:* The answer mentions criminal sanctions under Article 100 of the Trademark Law. Although there is a legal basis in one document, another document in the context explicitly states *"does not regulate sanctions against unauthorized parties"* (for genuine goods reseller cases). The AI answer failed to capture this nuance of exception, so the score was reduced slightly due to generalization.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Comprehensive answer covering criminal and civil options according to the user's desire to "report".
+
+### 5. Status of Verbal Divorce (Talak)
+> **Pertanyaan:** "Suami sering banget bilang talak... cuma lisan doang, status nikahnya cerai beneran atau nggak?"
+>
+> *(English: "My husband often says talak... only verbally, is the marriage status really divorced or not?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer firmly cites Article 39 of the Marriage Law and KHI stating that divorce is only valid before the court. Very faithful to the document.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Directly calms the user's anxiety with the answer "Marriage Status Remains Valid".
+
+### 6. 11 Citizen Rights
+> **Pertanyaan:** "Hak-hak kita di mata hukum itu apa aja sih? Katanya ada 11 ya?"
+>
+> *(English: "What are our rights in the eyes of the law? I heard there are 11?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer details points 1-11 very neatly according to the document context which indeed discusses those 11 rights. 100% accuracy.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Listicle format (bullet points) is very suitable for this type of question.
+
+### 7. Child Workers
+> **Pertanyaan:** "Anak kecil di bawah umur itu sebenernya boleh kerja nggak sih?"
+>
+> *(English: "Can underage children actually work or not?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer explains the legal nuance correctly: *"Prohibited, BUT there are exceptions (ages 13-15 for light work)"*. This is accurately taken from the Manpower Law in the context.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Answers the doubt "can they or not" with a conditional explanation that is easy to understand.
+
+### 8. Foreign Soccer Players
+> **Pertanyaan:** "Pemain bola asing... aturannya gimana?"
+>
+> *(English: "Foreign soccer players... what are the rules?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Combines info from the Sports Law, Manpower Law, and PSSI Regulations scattered across different chunks into one whole answer. Good synthesis skill.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Relevant, covering work permits (IMTA) and sports regulations.
+
+### 9. Renvoi of Supreme Court Decisions
+> **Pertanyaan:** "Maksudnya 'Renvoi' dalam putusan MA itu apa sih?"
+>
+> *(English: "What does 'Renvoi' mean in a Supreme Court decision?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The definition of Renvoi as a correction of clerical errors is taken exactly from Perma No. 6 of 2022 in the context.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Explains technical legal terms in language that is not too stiff.
+
+### 10. Laundry Compensation
+> **Pertanyaan:** "Kalau baju ilang pas lagi di-laundry, pemilik wajib ganti rugi nggak?"
+>
+> *(English: "If clothes get lost while at the laundry, is the owner required to compensate?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Cites Article 19 of the Consumer Protection Law regarding the obligation to compensate within 7 days. Very accurate according to the document.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Very pro-consumer according to the user's question, providing concrete steps (BPSK claim).
+
+### 11. Selling Waqf Land
+> **Pertanyaan:** "Tanah yang udah diwakafin itu boleh dijual lagi nggak sih?"
+>
+> *(English: "Can land that has been endowed (waqf) be sold again?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer firmly states **"PROHIBITED"** based on Article 40 of the Waqf Law. Mentions the 5-year criminal sanction (Article 67) found in the context.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Direct answer to the point without beating around the bush.
+
+### 12. Rehabilitation of Drug Suspects
+> **Pertanyaan:** "Kalau tersangka narkoba mau minta rehabilitasi, syarat sama prosedurnya gimana?"
+>
+> *(English: "If a drug suspect wants to request rehabilitation, what are the requirements and procedures?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Explains the Pre-trial procedure (Article 77 KUHAP) and special requirements (assessment) found in the document.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The procedure flow is explained step-by-step (Submission -> Examination -> Decision 7 days).
+
+### 13. Advocate & Notary Immunity
+> **Pertanyaan:** "Pengacara atau notaris itu kebal hukum nggak sih?"
+>
+> *(English: "Are lawyers or notaries immune to the law?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Distinguishes clearly: Advocates have limited immunity (Article 16 Advocate Law), Notaries **DO NOT** (Notary Office Law). This distinction is taken exactly from the context.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Answers the "immune to law" myth with balanced legal facts.
+
+### 14. Startups Managing Traditional Markets
+> **Pertanyaan:** "Bisa nggak sih perusahaan startup gitu ngelola pasar tradisional?"
+>
+> *(English: "Can startup companies manage traditional markets?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Cites Perpres 112/2007 Article 4 which allows the private sector to manage markets. MSME partnership requirements are also included according to the document.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* The answer "Yes, with conditions..." fits perfectly to answer the user's doubt.
+
+### 15. Insulting Parody Songs
+> **Pertanyaan:** "Kalau iseng nyebarin lagu parodi yang isinya ngehina orang, itu bisa kena pasal hukum nggak ya?"
+>
+> *(English: "If I jokingly spread a parody song that insults people, can I be charged with a law?")*
+
+- **Faithfulness:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Cites Article 27A of the ITE Law (newest 2024) regarding attacking honor. Explains the "intentional" element and 2-year prison sanction according to context.
+- **Relevancy:** ⭐⭐⭐⭐⭐ (5/5)
+  - *Analysis:* Answers the "joking" concern with an explanation of the "intent" element (mens rea) in criminal law.
+
 ### 4. Results & Conclusion
 
 The evaluation in steps 3.1 and 3.2 involved 4 key metrics:

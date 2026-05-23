@@ -11,9 +11,6 @@ class RAGEngine:
         if not config.GOOGLE_API_KEY:
             raise ValueError("GOOGLE_API_KEY not set.")
             
-        if not config.GOOGLE_API_KEY:
-            raise ValueError("GOOGLE_API_KEY not set.")
-            
         if config.LLM_PROVIDER == "groq":
             if not config.GROQ_API_KEY:
                 raise ValueError("GROQ_API_KEY not set but LLM_PROVIDER is 'groq'")
@@ -33,10 +30,9 @@ class RAGEngine:
                 temperature=0.7
             )
         
-        self.embeddings = GoogleGenerativeAIEmbeddings(
-            model=config.EMBEDDING_MODEL,
-            google_api_key=config.GOOGLE_API_KEY
-        )
+        # Use model2vec static embeddings (very fast)
+        from .embeddings import Model2VecEmbeddings
+        self.embeddings = Model2VecEmbeddings(config.EMBEDDING_MODEL)
         
         try:
             self.vectorstore = FAISS.load_local(

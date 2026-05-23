@@ -1,0 +1,12 @@
+langchain>=1.2
+langchain-community>=0.4
+langchain-google-genai>=4.2
+langchain-groq>=0.3
+langchain-huggingface>=1.2
+model2vec>=0.8
+faiss-cpu>=1.13
+sentence-transformers>=5.5
+python-dotenv>=1.0
+streamlit>=1.57
+requests>=2.31
+modal>=1.4
