@@ -94,7 +94,7 @@ The frontend posts user queries directly to the API endpoint. The API handles th
 
 - Python 3.10+
 - Node.js 18+
-- API keys: Groq (for Qwen) and/or Google (for Gemini + embeddings)
+- API keys: Groq (for Qwen)
 
 ### Environment variables
 
