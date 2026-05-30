@@ -1,5 +1,5 @@
 import { useState, type KeyboardEvent } from 'react'
-import { ArrowUp } from 'lucide-react'
+import { ArrowUp, Loader2 } from 'lucide-react'
 
 interface InputBarProps {
   onSubmit: (query: string) => void
@@ -16,7 +16,7 @@ export function InputBar({ onSubmit, disabled }: InputBarProps) {
     setValue('')
   }
 
-  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       handleSubmit()
@@ -24,28 +24,45 @@ export function InputBar({ onSubmit, disabled }: InputBarProps) {
   }
 
   return (
-    <div className="border-t border-[#e5e7eb] px-4 py-11 bg-white">
-      <div className="max-w-3xl mx-auto flex items-center gap-2">
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          placeholder="Tanya apa aja soal hukum..."
-          disabled={disabled}
-          maxLength={1000}
-          aria-label="Ketik pertanyaan hukum"
-          className="flex-1 h-10 px-4 text-[15px] text-[#1a1a1a] placeholder:text-[#9ca3af] border border-[#d1d5db] rounded-lg bg-white outline-none focus:border-[#2c5f6e] transition-colors disabled:opacity-60"
-        />
-        <button
-          type="button"
-          onClick={handleSubmit}
-          disabled={disabled || !value.trim()}
-          aria-label="Kirim pertanyaan"
-          className="size-10 flex items-center justify-center rounded-full bg-[#2c5f6e] text-white disabled:opacity-40 transition-opacity cursor-pointer disabled:cursor-not-allowed"
-        >
-          <ArrowUp className="size-4" />
-        </button>
+    <div className="border-t border-border px-6 sm:px-8 py-4 bg-background safe-bottom">
+      <div className="max-w-3xl mx-auto">
+        <div className="flex items-end gap-2 bg-white dark:bg-input border border-border rounded-2xl px-4 py-2
+                        focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20
+                        transition-all shadow-sm">
+          <textarea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Tanya apa aja soal hukum..."
+            disabled={disabled}
+            rows={1}
+            maxLength={1000}
+            aria-label="Ketik pertanyaan hukum"
+            className="flex-1 resize-none bg-transparent text-[15px] text-foreground
+                       placeholder:text-dimmed outline-none py-2 min-h-0
+                       disabled:opacity-60"
+          />
+          <button
+            type="button"
+            onClick={handleSubmit}
+            disabled={disabled || !value.trim()}
+            aria-label="Kirim pertanyaan"
+            className="shrink-0 size-10 flex items-center justify-center rounded-full
+                       bg-brand text-brand-foreground
+                       disabled:opacity-40 transition-all cursor-pointer
+                       disabled:cursor-not-allowed hover:bg-brand-hover
+                       active:scale-95"
+          >
+            {disabled ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <ArrowUp className="size-4" />
+            )}
+          </button>
+        </div>
+        <p className="text-xs text-center text-dimmed mt-2">
+          AWAM bisa membuat kesalahan. Verifikasi informasi penting dengan sumber resmi.
+        </p>
       </div>
     </div>
   )

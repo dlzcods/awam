@@ -12,15 +12,18 @@ const SAMPLE_QUESTIONS = [
 
 export function SampleQuestions({ onSelect }: SampleQuestionsProps) {
   return (
-    <div className="flex flex-col items-center gap-4 px-4">
-      <p className="text-sm text-[#6b7280]">Atau mulai dari sini:</p>
+    <div className="flex flex-col items-center gap-4 px-4 py-2 animate-fade-in">
+      <p className="text-sm text-muted">Atau mulai dari sini:</p>
       <div className="flex flex-wrap justify-center gap-2 max-w-2xl">
         {SAMPLE_QUESTIONS.map((question) => (
           <button
             key={question}
             type="button"
             onClick={() => onSelect(question)}
-            className="text-left text-sm px-3 py-2 border border-[#e5e7eb] rounded-lg text-[#1a1a1a] hover:border-[#2c5f6e] hover:text-[#2c5f6e] transition-colors cursor-pointer bg-white"
+            className="text-left text-sm px-4 py-2.5 border border-border rounded-xl
+                       text-foreground bg-card hover:border-brand hover:text-brand
+                       active:scale-[0.98] transition-all cursor-pointer
+                       min-h-[44px]"
           >
             {question}
           </button>

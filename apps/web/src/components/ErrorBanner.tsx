@@ -9,7 +9,8 @@ export function ErrorBanner({ message, onDismiss }: ErrorBannerProps) {
   return (
     <div
       role="alert"
-      className="mx-4 mb-3 flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+      className="mx-6 sm:mx-8 mb-3 flex items-start gap-3 rounded-xl border border-danger/30
+                 bg-danger/5 px-4 py-3 text-sm text-danger animate-slide-up"
     >
       <span className="flex-1">{message}</span>
       {onDismiss && (
@@ -17,9 +18,11 @@ export function ErrorBanner({ message, onDismiss }: ErrorBannerProps) {
           type="button"
           onClick={onDismiss}
           aria-label="Tutup pesan error"
-          className="text-red-400 hover:text-red-600 cursor-pointer"
+          className="shrink-0 size-6 flex items-center justify-center rounded
+                     text-danger/60 hover:text-danger hover:bg-danger/10
+                     transition-colors cursor-pointer"
         >
-          <X className="size-4" />
+          <X className="size-3.5" />
         </button>
       )}
     </div>
