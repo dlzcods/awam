@@ -12,6 +12,7 @@ apps/web/dist/
 
 # Data
 faiss_index/
+docs/
 
 # OS
 .DS_Store
@@ -21,3 +22,6 @@ faiss_index/
 .claude/
 .kiro/
 .vscode/
+.opencode/
+.codex/
+.qwen/
