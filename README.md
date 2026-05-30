@@ -192,7 +192,7 @@ User: "Bos potong gaji seenaknya, bisa dilaporin gak?"
        sepihak oleh pemberi kerja (UU Ketenagakerjaan)"
 
   [Hop 2] Search FAISS with reformulated query
-      -> Returns 15 candidate documents
+      -> Returns 10 candidate documents
 
   [Rerank] Cross-encoder scores and reorders
       -> Top 3 documents kept, deduplicated by article URL
