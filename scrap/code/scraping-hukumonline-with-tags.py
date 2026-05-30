@@ -399,8 +399,8 @@ if __name__ == "__main__":
 
     themes = [
         {
-            "name": "ilmu-hukum",
-            "url": "https://www.hukumonline.com/klinik/ilmu-hukum/",
+            "name": "profesi-hukum",
+            "url": "https://www.hukumonline.com/klinik/profesi-hukum/",
             "start_page": 1,
             "max_articles": 50  # akan scrape sampai dapat 50 artikel baru
         },
