@@ -94,8 +94,6 @@ The frontend posts user queries directly to the API endpoint. The API handles th
 │   ├── code/                        # Firecrawl scraping scripts
 │   ├── result/                      # Raw scraped articles (with boilerplate noise)
 │   └── cleaned/                     # Cleaned articles (ready for ingestion)
-├── docs/
-│   └── accuracy-improvement-plan.md # Hallucination root causes and fixes
 ├── .env.example                     # Required environment variables
 ├── README_Research-ID.md            # Research report (Indonesian)
 └── README_Research_Eng.md           # Research report (English)
