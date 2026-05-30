@@ -9,16 +9,15 @@ rag_image = (
         "langchain",
         "langchain-community",
         "langchain-groq",
-        "langchain-google-genai",
         "faiss-cpu",
         "sentence-transformers",
-        "model2vec",
+        "google-genai",
         "fastapi",
         "pydantic",
         "python-dotenv"
     )
     .add_local_dir("src", remote_path="/root/src")
-    .add_local_file(".env", remote_path="/root/.env")
+    .add_local_file("../../.env", remote_path="/root/.env")
 )
 
 vol = modal.Volume.from_name("rag-storage", create_if_missing=True)
@@ -40,11 +39,11 @@ class QueryResponse(BaseModel):
     references: List[Reference]
 
 @app.cls(
-    image=rag_image, 
+    image=rag_image,
     secrets=[
+        modal.Secret.from_name("my-groq-secret"),
         modal.Secret.from_name("my-google-secret"),
-        modal.Secret.from_name("my-groq-secret")
-    ], 
+    ],
     volumes={"/data": vol},
     min_containers=1
 )
@@ -57,24 +56,23 @@ class Model:
             from src import rag_engine, ingestion, config
             import os
 
-            possible_paths = ["/data/faiss_index", "/data/data/faiss_index"]
-            final_path = "/data/faiss_index" 
-            
-            for p in possible_paths:
-                if os.path.exists(p) and "index.faiss" in os.listdir(p):
-                    final_path = p
-                    print(f"DEBUG: Found valid index at {p}")
-                    break
-            
-            config.INDEX_PATH = final_path
-            
-            if os.path.exists(config.INDEX_PATH):
-                print(f"DEBUG: Index found at {config.INDEX_PATH}. Files: {os.listdir(config.INDEX_PATH)}")
+            # Single canonical path. Kept in sync with ingestion_modal.py.
+            # Volume rag-storage is mounted at /data, so faiss_index/ at the
+            # volume root appears as /data/faiss_index/ inside the container.
+            INDEX_PATH = "/data/faiss_index"
+
+            if os.path.exists(INDEX_PATH) and "index.faiss" in os.listdir(INDEX_PATH):
+                print(f"DEBUG: Index found at {INDEX_PATH}. Files: {os.listdir(INDEX_PATH)}")
             else:
-                print(f"DEBUG: Index NOT FOUND at {config.INDEX_PATH}. Walking /data to debug:")
+                print(f"DEBUG: Index NOT FOUND at {INDEX_PATH}. Walking /data to debug:")
                 for root, dirs, files in os.walk("/data"):
                     print(f"{root} -> {files}")
+                raise FileNotFoundError(
+                    f"FAISS index not found at {INDEX_PATH}. "
+                    f"Run 'modal run ingestion_modal.py' first to build the index."
+                )
 
+            config.INDEX_PATH = INDEX_PATH
             print("Initializing RAG Engine (Lazy Load)...")
             self.engine = rag_engine.RAGEngine()
         return self.engine
@@ -97,4 +95,14 @@ class Model:
 
     @modal.fastapi_endpoint(method="POST", label="reindex")
     def admin_reindex(self, item: dict):
-        return {"message": "Re-indexing logic needs data source connection"}
+        """Rebuild the FAISS index from cleaned scraped data."""
+        try:
+            from src import ingestion
+            ingestion.clean_and_build_index()
+            return {"message": "Re-indexing complete", "status": "ok"}
+        except Exception as e:
+            import traceback
+            return {
+                "message": f"Re-indexing failed: {str(e)}",
+                "traceback": traceback.format_exc(),
+            }

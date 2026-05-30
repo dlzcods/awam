@@ -4,14 +4,20 @@ from src import ingestion, rag_engine, config
 
 def main():
     print("=== Legal RAG System (Double-Hop) ===")
-    
-    if not config.GOOGLE_API_KEY:
-        print("ERROR: GOOGLE_API_KEY not found.")
-        print("Please create a .env file with GOOGLE_API_KEY=your_key_here")
-        return
 
-    force_reindex = "--reindex" in sys.argv
-    if force_reindex or not os.path.exists(config.INDEX_PATH):
+    provider = config.LLM_PROVIDER
+    if provider == "gemini":
+        if not config.GEMINI_API_KEY:
+            print("ERROR: LLM_PROVIDER=gemini but GEMINI_API_KEY not found.")
+            return
+    else:
+        if not config.GROQ_API_KEY:
+            print("ERROR: LLM_PROVIDER=groq but GROQ_API_KEY not found.")
+            print("Please create a .env file with GROQ_API_KEY=your_key_here")
+            return
+
+    force_reindex = "--reindex" in sys.argv or "--rebuild" in sys.argv
+    if force_reindex or not os.path.exists(os.path.join(config.INDEX_PATH, "index.faiss")):
         print("Building index from data folder...")
         try:
             ingestion.build_index()
